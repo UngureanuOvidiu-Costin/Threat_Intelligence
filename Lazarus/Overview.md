@@ -87,7 +87,7 @@
   - Wake-On-Lan combined with dbxcli to exfiltrate user's data on OneDrive
 
 ## Money:
-	Lazarus Group has been operation for more than 10 years, and according to U.S. officials, has stolen over 2$ bilion worth of cryptocurrency.
+Lazarus Group has been operation for more than 10 years, and according to U.S. officials, has stolen over 2$ bilion worth of cryptocurrency.
 	
 
 ## Timeline
@@ -95,4 +95,23 @@
 
 ![Lazarus drawio](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/4d8c28b2-6388-4e96-bcf5-8f031dc28681)
 
+
+
+## WannaCry Demo
+![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/46ee882f-dfc3-467a-9219-50cde6f80891)
+MD5:
+SHA256:
+
+### IoCs:
+- http://www.iuqerfsodp9ifjaposdfjhgosurijarwrwergwea.com
+
+### Behaviour:
+1. ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/92b10425-12b3-40c4-a647-dcb4b2e32e94)
+Performs a request on the URL and if it fails, the main execution thread enters the `function wanna_cry_entr()`.
+2.  ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/0fa099de-7949-4ef6-9268-4319165b36f3)
+Get the executable path and store it. If the malware got no arguments, it enters a function and after it's execution, it exits.
+3. ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/7beb33a9-ed44-47d8-a179-ca88e14789ab) <br>
+It creates a service named: `Microsoft Security Center(2.0) Service` and sets this service to start on boot with all permisions.
+
+ 
 
