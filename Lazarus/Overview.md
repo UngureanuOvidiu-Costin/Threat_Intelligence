@@ -15,10 +15,13 @@
 # News 
 * [SANS ISC](https://isc.sans.edu/diary/Loader+activity+for+Formbook+QM18/30020)
 * [The Hacker News Logo](https://thehackernews.com/2023/12/lazarus-group-using-log4j-exploits-to.html)
+* [Twitter](https://twitter.com/IT_securitynews/status/1769003278379921892)
+
 
 # Intrusion Campaigns
 * [CVE-2024-21338](https://digvel.com/blog/lazarus-group-exploits-windows-zero-day-for-kernel-privileges/)
 * [Healthcare](https://therecord.media/lazarus-new-malware-manageengine-open-source)
+* 
 
 ## Operation Interception
   - Operation Interception - 2020 - Espionage campaign
@@ -88,6 +91,12 @@
 
 ## Money:
 Lazarus Group has been operation for more than 10 years, and according to U.S. officials, has stolen over 2$ bilion worth of cryptocurrency.
+ - https://www.fbi.gov/news/press-releases/fbi-identifies-lazarus-group-cyber-actors-as-responsible-for-theft-of-41-million-from-stakecom
+   ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/88143cd3-0fe6-45e8-9b50-23796a016394)
+ - https://securityaffairs.com/150957/apt/lazarus-stole-240m-crypto-assets.html
+   ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/fc19321f-87fd-4de3-8a0b-b605b5d3d5f5)
+
+
 	
 
 ## Timeline
@@ -115,7 +124,7 @@ Performs a request on the URL and if it fails, the main execution thread enters 
  - .rdata
  - .data
  - .rsrc
-4. What is the compiler timestamp value?
+4. What is the compiler timestamp value?<br>
 **Sat Nov 20 11:03:08 2010**
 5.  IDA displays the imported APIs and their respective modules inside the Imports window.<br>
  ● CryptAcquireContextA, CryptGenRandom indicate that the PE might be doing
@@ -200,13 +209,14 @@ In addition to our first stage sample, the second stage imports several other AP
 ![alt text](image-1.png)
 
 The embedded resource is located at 2058:
-![alt text](image-2.png)
+![alt text](image-2.png)<br>
 Based on the `magic number` it is a ZIP file.<br>
 The password of the archive is **WNcry@2ol7**. 
 
 ## How does it spread ?
 1. Generates a random IP address.
-2. Performs an EternalBlue attack on the IP, which is an exploit of Microsoft's implementation of their Server Message Block (SMB) protocol. 
+2. Performs an EternalBlue attack on the IP, which is an exploit of Microsoft's implementation of their Server Message Block (SMB) protocol.
+https://en.wikipedia.org/wiki/EternalBlue
 
 
 ## What do these strings could mean?
