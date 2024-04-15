@@ -105,7 +105,10 @@ Lazarus Group has been operation for more than 10 years, and according to U.S. o
    - 14.04.2024 - Outgoing -277.99983140 BTC ($17,779,676)
  - 3NbdrezMzAVVfXv5MTQJn4hWqKhYCTCJoB
  - 34VXKa5upLWVYMXmgid6bFM4BaQXHxSUoL
-
+ - References:
+   - https://www.fbi.gov/news/press-releases/fbi-identifies-cryptocurrency-funds-stolen-by-dprk
+   - https://www.blockchain.com/explorer/addresses/btc/39idqitN9tYNmq3wYanwg3MitFB5TZCjWu
+   - https://www.blockchain.com/explorer/addresses/btc/3PjNaSeP8GzLjGeu51JR19Q2Lu8W2Te9oc
 	
 ## Timeline
 
@@ -113,10 +116,10 @@ Lazarus Group has been operation for more than 10 years, and according to U.S. o
 ![Lazarus drawio](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/4d8c28b2-6388-4e96-bcf5-8f031dc28681)
 
 
-## TraderTraitor
-
+## TraderTraitor 
  - Malicious cryptocurrency applications
  - Spear-phishing campaign aimed at employees of cryptocurrency companies
+ - Reference: https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-108a
 
 ### IoCs:
  - DAFOM
