@@ -96,15 +96,66 @@ Lazarus Group has been operation for more than 10 years, and according to U.S. o
  - https://securityaffairs.com/150957/apt/lazarus-stole-240m-crypto-assets.html
    ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/fc19321f-87fd-4de3-8a0b-b605b5d3d5f5)
 
+### Known used BTC addresses:
+ - 3LU8wRu4ZnXP4UM8Yo6kkTiGHM9BubgyiG
+ - 39idqitN9tYNmq3wYanwg3MitFB5TZCjWu
+   - 24.03.2024 - Outgoing -109.88308933 BTC ($7,074,422)
+ - 3AAUBbKJorvNhEUFhKnep9YTwmZECxE4Nk
+ - 3PjNaSeP8GzLjGeu51JR19Q2Lu8W2Te9oc
+   - 14.04.2024 - Outgoing -277.99983140 BTC ($17,779,676)
+ - 3NbdrezMzAVVfXv5MTQJn4hWqKhYCTCJoB
+ - 34VXKa5upLWVYMXmgid6bFM4BaQXHxSUoL
 
 	
-
 ## Timeline
 
 
 ![Lazarus drawio](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/4d8c28b2-6388-4e96-bcf5-8f031dc28681)
 
 
+## TraderTraitor
+
+ - Malicious cryptocurrency applications
+ - Spear-phishing campaign aimed at employees of cryptocurrency companies
+
+### IoCs:
+ - DAFOM
+   - Cryptocurrency portfolio application
+   - Mach-O binary packaged within the Electron application
+   - Signed by an Apple digital signature issued for the Apple Developer Team W58CYKFH67
+   - URL: dafom[.]dev
+   - IP Address: 45.14.227[.]58
+   - SHA-256: 60b3cfe2ec3100caf4afde734cfd5147f78acf58ab17d4480196831db4aa5f18
+ - TokenAIS
+   - “build a portfolio of AI-based trading” for cryptocurrencies.
+   - Apple Developer Team RN4BTXA4SA
+   - URL: tokenais[.]com
+   - IP Address: 199.188.103[.]115
+   - SHA-256: 5b40b73934c1583144f41d8463e227529fa7157e26e6012babd062e3fd7e0b03
+ - AlticGO
+   - Nullsoft Scriptable Install System (NSIS) Windows executables that extracted an Electron application packaged for Windows
+   - URL: alticgo[.]com
+   - IP Address: 108.170.55[.]202
+   - SHA-256:
+     - 765a79d22330098884e0f7ce692d61c40dfcf288826342f33d976d8314cfd819
+     - e3d98cc4539068ce335f1240deb1d72a0b57b9ca5803254616ea4999b66703ad
+     - 8acd7c2708eb1119ba64699fd702ebd96c0d59a66cba5059f4e089f4b0914925
+ - Esilet
+   - claims to offer live cryptocurrency prices and price predictions
+   - URL: esilet[.]com
+   - IP Address: 104.168.98[.]156
+   - SHA-256:
+     - 9ba02f8a985ec1a99ab7b78fa678f26c0273d91ae7cbe45b814e6775ec477598 (MacOS)
+   - C2 Endpoints:
+     - hxxps://greenvideo[.]nl/wp‐content/themes/top.php
+     - hxxps://dafnefonseca[.]com/wp‐content/themes/top.php
+     - hxxps://haciendadeclarevot[.]com/wp‐content/top.php
+ - CreAI Deck:
+   - platform for “artificial intelligence and deep learning.”
+   - URL: creaideck[.]com
+     - IP Address: 38.132.124[.]161
+   - URL: aideck[.]net
+     - IP Address: 89.45.4[.]151
 
 ## WannaCry Demo
 ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/46ee882f-dfc3-467a-9219-50cde6f80891)
