@@ -226,6 +226,10 @@ Lazarus Group has been operation for more than 10 years, and according to U.S. o
    - URL: aideck[.]net
      - IP Address: 89.45.4[.]151
 
+## Suricata / Snort rules examples (remove square brackets before use)
+- drop tcp any any -> 45.14.227[.]58 any ( sid:25000; rev:1; )
+- alert dns any any -> any any (msg:"DNS Query for TraderTraitor domain dafom[.]com"; dns\_query; content:"dafom[.]com"; sid:1234; rev:1;)
+
 ## WannaCry Demo
 ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/46ee882f-dfc3-467a-9219-50cde6f80891)
 MD5: db349b97c37d22f5ea1d1841e3c89eb4
