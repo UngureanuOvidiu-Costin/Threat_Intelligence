@@ -23,6 +23,72 @@
 * [Healthcare](https://therecord.media/lazarus-new-malware-manageengine-open-source)
 * 
 
+## Organization
+
+- North Korean state-sponsored actors
+- Espionage, sabotage, funding for the regime
+
+- "If warfare was about bullets and oil until now, warfare in the 21st
+century is about information. War is won and lost by who has
+greater access to the adversary’s military technical information in
+peacetime, how effectively one can disrupt the adversary’s military
+command and control information, and how effectively one can
+utilize one’s own information." - Kin Jong-Un, 2010
+
+- “With intensive information and communication technology, and the brave RGB with its [cyber] warriors, we can penetrate any
+sanctions for the construction of a strong and prosperous nation.” - Kim Jong-Un, 2013
+
+- Reconnaisance General Bureau (RGB)
+- "Lazarus" - catch-all term for North Korean actors
+- CrowdStrike: 5 North Korean groups with different purposes
+  - Labyrinth Chollima
+    - Bureau 121
+    - espionage / funding dual-purpose
+  - Stardust
+    - Specialized in cryptocurrency and financial services targeting
+  - Silent
+    - Economic espionage
+  - Velvet
+    - NGO, think-tanks, academia - intelligence collection
+  - Ricochet
+    - Similar to Velvet, specialized in South Korea, higher technical level
+    - E.g. fake religious applications to track people bringing religion in North Korea
+  using "accessibility mode" to silently turn on all other permissions
+- References: CS Adversary Universe podcast NK episode (https://www.crowdstrike.com/resources/adversary-universe-podcast/),
+  The All-Purpose Sword: North Korea's Cyber Operations and Strategies, by Ji Young, Kong, Jong In, Lim, and Kyoung Gon, Kim
+
+### Command structure
+
+![image](./nk/command.png)
+
+- Reference:
+  - The All-Purpose Sword: North Korea's Cyber Operations and Strategies, by Ji Young, Kong, Jong In, Lim, and Kyoung Gon, Kim
+
+### Motivation
+- Military first mentality since NK creation after the Korean war
+- Distruptive-destructive provocation attacks
+- Shift in 2016 (along with government reshuffle)
+- National Economic Development Strategy
+- Transition from to revenue generation and economic espionage
+- Reference: CS Adversary Universe podcast
+
+### Known members
+- Park Jin Hyok
+
+![image](./handsome_fellows/park_jin_hyok.png)
+
+![image](./handsome_fellows/park_jin_hyok_fbi_wanted.png)
+
+- Jon Chang Hyok
+
+![image](./handsome_fellows/jon_chang_hyok.png)
+
+- Kim Il
+
+![image](./handsome_fellows/kim_il.png)
+
+- Reference: [US Indictment against hackers](https://www.justice.gov/usao-cdca/press-release/file/1367721/download)
+
 ## Operation Interception
   - Operation Interception - 2020 - Espionage campaign
   - Compromised domains:
