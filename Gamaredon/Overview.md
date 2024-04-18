@@ -16,7 +16,7 @@ Their script is obfuscated using b64 and dynamic string encoding.
 The big script hides 3 smaller powershell scripts. For each of them, we have deobfuscated them using PowerDecode and manually decoded the links.
 
 How the scripts are started:
-```powershell
+```batch
 @echo off
 set xps1=malicious_script1
 set xwp0=powershell
@@ -32,3 +32,14 @@ cmd /c start /min "" %xwp0% %xwp1% %xwp2% -c (%xwp0% %xwp1% %xwp2% -enC ($env:xp
 ```
 
 The deobfuscated powershell scripts have been uploaded to this repo: https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/tree/main/Gamaredon
+
+This is the sequence diagram for the malware:
+<img src="https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/blob/main/Gamaredon/sequence_diagram.png">
+
+The behaviour of the malware is as follows:
+
+1. The user clicks the fake pdf
+2. The bat script launches 3 b64 encoded scripts, one after the other
+3. The first script starts a decoy pdf file, for the unsuspecting user
+4. The second script will launch itself and run indefinitely in RAM. This script executes C2 commands at 2-3 seconds delay.
+5. The third script assures persistence of the second script, as it writes the content of it into decoy registers XBoxD(i). Also, makes a register XBoxCache in autorun for the script to run at the start of the computer.
