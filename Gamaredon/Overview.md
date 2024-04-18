@@ -43,3 +43,6 @@ The behaviour of the malware is as follows:
 3. The first script starts a decoy pdf file, for the unsuspecting user
 4. The second script will launch itself and run indefinitely in RAM. This script executes C2 commands at 2-3 seconds delay.
 5. The third script assures persistence of the second script, as it writes the content of it into decoy registers XBoxD(i). Also, makes a register XBoxCache in autorun for the script to run at the start of the computer.
+
+This is the live detonation of the malware:
+[![Video](https://i9.ytimg.com/vi_webp/GHCjz2ngIvw/mq1.webp?sqp=COj7grEG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGBMgWCh_MA8=&rs=AOn4CLAA5abopAbegRQnHFvuaevLhnuWnA)](https://www.youtube.com/watch?v=GHCjz2ngIvw)
