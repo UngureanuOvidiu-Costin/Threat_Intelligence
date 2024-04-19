@@ -23,6 +23,72 @@
 * [Healthcare](https://therecord.media/lazarus-new-malware-manageengine-open-source)
 * 
 
+## Organization
+
+- North Korean state-sponsored actors
+- Espionage, sabotage, funding for the regime
+
+- "If warfare was about bullets and oil until now, warfare in the 21st
+century is about information. War is won and lost by who has
+greater access to the adversary’s military technical information in
+peacetime, how effectively one can disrupt the adversary’s military
+command and control information, and how effectively one can
+utilize one’s own information." - Kin Jong-Un, 2010
+
+- “With intensive information and communication technology, and the brave RGB with its [cyber] warriors, we can penetrate any
+sanctions for the construction of a strong and prosperous nation.” - Kim Jong-Un, 2013
+
+- Reconnaisance General Bureau (RGB)
+- "Lazarus" - catch-all term for North Korean actors
+- CrowdStrike: 5 North Korean groups with different purposes
+  - Labyrinth Chollima
+    - Bureau 121
+    - espionage / funding dual-purpose
+  - Stardust
+    - Specialized in cryptocurrency and financial services targeting
+  - Silent
+    - Economic espionage
+  - Velvet
+    - NGO, think-tanks, academia - intelligence collection
+  - Ricochet
+    - Similar to Velvet, specialized in South Korea, higher technical level
+    - E.g. fake religious applications to track people bringing religion in North Korea
+  using "accessibility mode" to silently turn on all other permissions
+- References: CS Adversary Universe podcast NK episode (https://www.crowdstrike.com/resources/adversary-universe-podcast/),
+  The All-Purpose Sword: North Korea's Cyber Operations and Strategies, by Ji Young, Kong, Jong In, Lim, and Kyoung Gon, Kim
+
+### Command structure
+
+![image](./nk/command.png)
+
+- Reference:
+  - The All-Purpose Sword: North Korea's Cyber Operations and Strategies, by Ji Young, Kong, Jong In, Lim, and Kyoung Gon, Kim
+
+### Motivation
+- Military first mentality since NK creation after the Korean war
+- Distruptive-destructive provocation attacks
+- Shift in 2016 (along with government reshuffle)
+- National Economic Development Strategy
+- Transition from to revenue generation and economic espionage
+- Reference: CS Adversary Universe podcast
+
+### Known members
+- Park Jin Hyok
+
+![image](./handsome_fellows/park_jin_hyok.png)
+
+![image](./handsome_fellows/park_jin_hyok_fbi_wanted.png)
+
+- Jon Chang Hyok
+
+![image](./handsome_fellows/jon_chang_hyok.png)
+
+- Kim Il
+
+![image](./handsome_fellows/kim_il.png)
+
+- Reference: [US Indictment against hackers](https://www.justice.gov/usao-cdca/press-release/file/1367721/download)
+
 ## Operation Interception
   - Operation Interception - 2020 - Espionage campaign
   - Compromised domains:
@@ -96,15 +162,73 @@ Lazarus Group has been operation for more than 10 years, and according to U.S. o
  - https://securityaffairs.com/150957/apt/lazarus-stole-240m-crypto-assets.html
    ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/fc19321f-87fd-4de3-8a0b-b605b5d3d5f5)
 
-
+### Known used BTC addresses:
+ - 3LU8wRu4ZnXP4UM8Yo6kkTiGHM9BubgyiG
+ - 39idqitN9tYNmq3wYanwg3MitFB5TZCjWu
+   - 24.03.2024 - Outgoing -109.88308933 BTC ($7,074,422)
+ - 3AAUBbKJorvNhEUFhKnep9YTwmZECxE4Nk
+ - 3PjNaSeP8GzLjGeu51JR19Q2Lu8W2Te9oc
+   - 14.04.2024 - Outgoing -277.99983140 BTC ($17,779,676)
+ - 3NbdrezMzAVVfXv5MTQJn4hWqKhYCTCJoB
+ - 34VXKa5upLWVYMXmgid6bFM4BaQXHxSUoL
+ - References:
+   - https://www.fbi.gov/news/press-releases/fbi-identifies-cryptocurrency-funds-stolen-by-dprk
+   - https://www.blockchain.com/explorer/addresses/btc/39idqitN9tYNmq3wYanwg3MitFB5TZCjWu
+   - https://www.blockchain.com/explorer/addresses/btc/3PjNaSeP8GzLjGeu51JR19Q2Lu8W2Te9oc
 	
-
 ## Timeline
 
 
 ![Lazarus drawio](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/4d8c28b2-6388-4e96-bcf5-8f031dc28681)
 
 
+## TraderTraitor 
+ - Malicious cryptocurrency applications
+ - Spear-phishing campaign aimed at employees of cryptocurrency companies
+ - Reference: https://www.cisa.gov/news-events/cybersecurity-advisories/aa22-108a
+
+### IoCs:
+ - DAFOM
+   - Cryptocurrency portfolio application
+   - Mach-O binary packaged within the Electron application
+   - Signed by an Apple digital signature issued for the Apple Developer Team W58CYKFH67
+   - URL: dafom[.]dev
+   - IP Address: 45.14.227[.]58
+   - SHA-256: 60b3cfe2ec3100caf4afde734cfd5147f78acf58ab17d4480196831db4aa5f18
+ - TokenAIS
+   - “build a portfolio of AI-based trading” for cryptocurrencies.
+   - Apple Developer Team RN4BTXA4SA
+   - URL: tokenais[.]com
+   - IP Address: 199.188.103[.]115
+   - SHA-256: 5b40b73934c1583144f41d8463e227529fa7157e26e6012babd062e3fd7e0b03
+ - AlticGO
+   - Nullsoft Scriptable Install System (NSIS) Windows executables that extracted an Electron application packaged for Windows
+   - URL: alticgo[.]com
+   - IP Address: 108.170.55[.]202
+   - SHA-256:
+     - 765a79d22330098884e0f7ce692d61c40dfcf288826342f33d976d8314cfd819
+     - e3d98cc4539068ce335f1240deb1d72a0b57b9ca5803254616ea4999b66703ad
+     - 8acd7c2708eb1119ba64699fd702ebd96c0d59a66cba5059f4e089f4b0914925
+ - Esilet
+   - claims to offer live cryptocurrency prices and price predictions
+   - URL: esilet[.]com
+   - IP Address: 104.168.98[.]156
+   - SHA-256:
+     - 9ba02f8a985ec1a99ab7b78fa678f26c0273d91ae7cbe45b814e6775ec477598 (MacOS)
+   - C2 Endpoints:
+     - hxxps://greenvideo[.]nl/wp‐content/themes/top.php
+     - hxxps://dafnefonseca[.]com/wp‐content/themes/top.php
+     - hxxps://haciendadeclarevot[.]com/wp‐content/top.php
+ - CreAI Deck:
+   - platform for “artificial intelligence and deep learning.”
+   - URL: creaideck[.]com
+     - IP Address: 38.132.124[.]161
+   - URL: aideck[.]net
+     - IP Address: 89.45.4[.]151
+
+## Suricata / Snort rules examples (remove square brackets before use)
+- drop tcp any any -> 45.14.227[.]58 any ( sid:25000; rev:1; )
+- alert dns any any -> any any (msg:"DNS Query for TraderTraitor domain dafom[.]com"; dns\_query; content:"dafom[.]com"; sid:1234; rev:1;)
 
 ## WannaCry Demo
 ![image](https://github.com/UngureanuOvidiu-Costin/Threat_Intelligence/assets/102877918/46ee882f-dfc3-467a-9219-50cde6f80891)
